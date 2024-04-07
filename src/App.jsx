@@ -14,6 +14,9 @@ function App() {
         scene="https://prod.spline.design/He5R4YZaPhMFKUra/scene.splinecode"
         onMouseDown={onMouseDown}
       />
+      {/* <h1 className="text-3xl font-bold underline text-blue-500">
+        Hello world!asds
+      </h1> */}
     </>
   );
 }
