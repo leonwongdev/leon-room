@@ -67,7 +67,7 @@ function App() {
       />
 
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl md:w-4/4 ">
+        <div className="modal-box w-11/12 max-w-5xl md:w-4/4">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
@@ -79,12 +79,18 @@ function App() {
           </form>
           <h3 className="font-bold text-lg mb-2">My Projects</h3>
 
-          <div className="carousel space-x-4 w-full sm:h-96 ">
+          <div className="carousel space-x-4 w-full sm:h-96 lg:h-[35rem]">
             <div
               id="slide1"
               className="carousel-item relative w-full flex-col gap-2"
             >
               <p>Youtube Note-taking App</p>
+              <div className="flex gap-1">
+                <span className="badge badge-primary">React.js</span>
+                <span className="badge badge-primary">.Net 8</span>
+                <span className="badge badge-primary">T-SQL</span>
+              </div>
+
               <div className="mockup-window border bg-blue-900 w-full">
                 <div className="flex justify-center bg-base-200 h-full">
                   <img
@@ -103,7 +109,6 @@ function App() {
                   Live Demo
                 </a>
               </div>
-
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide4" className="btn btn-circle ">
                   ❮
@@ -119,6 +124,11 @@ function App() {
               className="carousel-item relative w-full flex-col gap-2"
             >
               <p>Hackathon Team Builder App</p>
+              <div className="flex gap-1">
+                <span className="badge badge-primary">.Net MVC 5</span>
+                <span className="badge badge-primary">.Net WebAPI</span>
+                <span className="badge badge-primary">Entity framework 6</span>
+              </div>
               <div className="mockup-window border bg-blue-900 w-full">
                 <div className="flex justify-center bg-base-200 h-full">
                   <img
@@ -155,6 +165,11 @@ function App() {
               <p>
                 Dictionary Chrome Extensio {"(4.3 Stars / 75 Active Users)"}
               </p>
+              <div className="flex gap-1">
+                <span className="badge badge-primary">HTML</span>
+                <span className="badge badge-primary">CSS</span>
+                <span className="badge badge-primary">JavaScript</span>
+              </div>
               <div className="mockup-window border bg-blue-900 w-full">
                 <div className="flex justify-center bg-base-200 h-full">
                   <img
