@@ -193,9 +193,9 @@ function App() {
                 <a href="#slide2" className="btn btn-circle ">
                   ❮
                 </a>
-                <a href="#slide4" className="btn btn-circle">
+                {/* <a href="#slide4" className="btn btn-circle">
                   ❯
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
