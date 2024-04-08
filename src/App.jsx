@@ -163,7 +163,7 @@ function App() {
               className="carousel-item relative w-full flex-col gap-2"
             >
               <p>
-                Dictionary Chrome Extensio {"(4.3 Stars / 75 Active Users)"}
+                Dictionary Chrome Extension {"(4.3 Stars / 75 Active Users)"}
               </p>
               <div className="flex gap-1">
                 <span className="badge badge-primary">HTML</span>
