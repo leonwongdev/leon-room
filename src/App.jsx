@@ -1,5 +1,8 @@
 import Spline from "@splinetool/react-spline";
 import { useRef, useState } from "react";
+import youtubeNoteTakingAppThumbnail from "./assets/img/youtube-note-taking.png";
+import hackathonTeamBuilderThumbnail from "./assets/img/hacthon-team-builder.jpeg";
+import chromeExtensionThumbnail from "./assets/img/chrome-extension.jpeg";
 function App() {
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
   // const [isShowProjects, setIsShowProjects] = useState(false);
@@ -28,7 +31,7 @@ function App() {
       }
       setTimeout(() => {
         // Display project modal after Camera animation ends
-        document.getElementById("my_modal_1").showModal();
+        document.getElementById("my_modal_3").showModal();
         isShowProjects.current = true;
         console.debug("Showing modal isShowProjects=", isShowProjects);
       }, 1000);
@@ -62,29 +65,124 @@ function App() {
         onMouseDown={onMouseDown}
         className={isSplineLoaded ? "block" : "hidden"}
       />
-      {/* <h1 className="text-3xl font-bold underline text-blue-500">
-        Hello world!asds
-      </h1> */}
-      {/* <button
-        className="btn"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
-      >
-        open modal
-      </button> */}
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close,isShowProjects=
-            {isShowProjects ? "true" : "false"}
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn" onClick={onModalClose}>
-                Close
-              </button>
-            </form>
+
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl md:w-4/4 ">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              onClick={onModalClose}
+            >
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg mb-2">My Projects</h3>
+
+          <div className="carousel space-x-4 w-full sm:h-96 ">
+            <div
+              id="slide1"
+              className="carousel-item relative w-full flex-col gap-2"
+            >
+              <p>Youtube Note-taking App</p>
+              <div className="mockup-window border bg-blue-900 w-full">
+                <div className="flex justify-center bg-base-200 h-full">
+                  <img
+                    src={youtubeNoteTakingAppThumbnail}
+                    className="w-full h-full object-contain"
+                    alt="Youtube Note-taking App Thumbnail"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <a
+                  className="btn btn-outline btn-primary w-2/5"
+                  href="https://youtubenotes.netlify.app/"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+              </div>
+
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                <a href="#slide4" className="btn btn-circle ">
+                  ❮
+                </a>
+                <a href="#slide2" className="btn btn-circle">
+                  ❯
+                </a>
+              </div>
+            </div>
+            {/* Slide 2 */}
+            <div
+              id="slide2"
+              className="carousel-item relative w-full flex-col gap-2"
+            >
+              <p>Hackathon Team Builder App</p>
+              <div className="mockup-window border bg-blue-900 w-full">
+                <div className="flex justify-center bg-base-200 h-full">
+                  <img
+                    src={hackathonTeamBuilderThumbnail}
+                    className="w-full h-full object-contain"
+                    alt="Hackathon Team Builder App Thumbnail"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <a
+                  className="btn btn-outline btn-primary w-2/5"
+                  href="https://hackathonteambuilder20240320220041.azurewebsites.net/"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+              </div>
+
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                <a href="#slide1" className="btn btn-circle ">
+                  ❮
+                </a>
+                <a href="#slide3" className="btn btn-circle">
+                  ❯
+                </a>
+              </div>
+            </div>
+            {/* Slide 3 */}
+            <div
+              id="slide3"
+              className="carousel-item relative w-full flex-col gap-2"
+            >
+              <p>
+                Dictionary Chrome Extensio {"(4.3 Stars / 75 Active Users)"}
+              </p>
+              <div className="mockup-window border bg-blue-900 w-full">
+                <div className="flex justify-center bg-base-200 h-full">
+                  <img
+                    src={chromeExtensionThumbnail}
+                    className="w-full h-full object-contain"
+                    alt="Dictionary Chrome Extension Thumbnail"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <a
+                  className="btn btn-outline btn-primary w-2/5"
+                  href="https://chromewebstore.google.com/detail/dictionary-search-diction/clhkbghopdclagfplhknlhcpnjefpacd?hl=en&authuser=0"
+                  target="_blank"
+                >
+                  Get Extension
+                </a>
+              </div>
+
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                <a href="#slide2" className="btn btn-circle ">
+                  ❮
+                </a>
+                <a href="#slide4" className="btn btn-circle">
+                  ❯
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </dialog>
