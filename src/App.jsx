@@ -127,7 +127,7 @@ function App() {
               <div className="flex gap-1">
                 <span className="badge badge-primary">.Net MVC 5</span>
                 <span className="badge badge-primary">.Net WebAPI</span>
-                <span className="badge badge-primary">Entity framework 6</span>
+                <span className="badge badge-primary">EF 6</span>
               </div>
               <div className="mockup-window border bg-blue-900 w-full">
                 <div className="flex justify-center bg-base-200 h-full">
