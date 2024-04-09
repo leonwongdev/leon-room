@@ -1,8 +1,21 @@
 import Spline from "@splinetool/react-spline";
 import { useRef, useState } from "react";
+import { pdfjs, Document, Page } from "react-pdf";
 import youtubeNoteTakingAppThumbnail from "./assets/img/youtube-note-taking.png";
 import hackathonTeamBuilderThumbnail from "./assets/img/hacthon-team-builder.jpeg";
 import chromeExtensionThumbnail from "./assets/img/chrome-extension.jpeg";
+import resumePDF from "/public/Lap_Wang_Wong_Resume.pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
+
+const pdfOptions = {
+  cMapUrl: "/cmaps/",
+  standardFontDataUrl: "/standard_fonts/",
+};
+
 function App() {
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
   // const [isShowProjects, setIsShowProjects] = useState(false);
@@ -54,6 +67,22 @@ function App() {
       );
     }
     return <></>;
+  }
+
+  function renderResumePDF() {
+    return (
+      <div>
+        <Document
+          file={resumePDF}
+          onLoadSuccess={() => {
+            console.log("PDF loaded");
+          }}
+          options={pdfOptions}
+        >
+          <Page pageNumber={1} />
+        </Document>
+      </div>
+    );
   }
 
   return (
