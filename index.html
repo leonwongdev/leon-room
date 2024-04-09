@@ -9,5 +9,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.onload = function () {
+        document.getElementsByTagName("canvas")[0].addEventListener(
+          "touchmove",
+          function (e) {
+            e.stopPropagation();
+          },
+          { passive: false }
+        );
+      };
+    </script>
   </body>
 </html>
