@@ -60,12 +60,11 @@ function App() {
     <>
       {renderLoading()}
       <Spline
-        scene="https://prod.spline.design/He5R4YZaPhMFKUra/scene.splinecode"
+        scene="https://prod.spline.design/Hdt3y9wKpkr2uqxY/scene.splinecode"
         onLoad={onSplineLoad}
         onMouseDown={onMouseDown}
         className={isSplineLoaded ? "block" : "hidden"}
       />
-
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box w-11/12 max-w-5xl md:w-4/4">
           <form method="dialog">
