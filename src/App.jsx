@@ -1,10 +1,10 @@
 import Spline from "@splinetool/react-spline";
 import { useRef, useState } from "react";
 import { pdfjs, Document, Page } from "react-pdf";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 import youtubeNoteTakingAppThumbnail from "./assets/img/youtube-note-taking.png";
 import hackathonTeamBuilderThumbnail from "./assets/img/hacthon-team-builder.jpeg";
 import chromeExtensionThumbnail from "./assets/img/chrome-extension.jpeg";
-import resumePDF from "/public/Lap_Wang_Wong_Resume.pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -16,12 +16,17 @@ const pdfOptions = {
   standardFontDataUrl: "/standard_fonts/",
 };
 
+const resumeURL =
+  "https://leonstorageac.blob.core.windows.net/assets/Lap_Wang_Wong_Resume.pdf";
+
 function App() {
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
-  // const [isShowProjects, setIsShowProjects] = useState(false);
+
   const isShowProjects = useRef(false);
+  const isShowingResume = useRef(false);
 
   const splineComputerRef = useRef();
+  const splineArtBoardRef = useRef();
 
   function onSplineLoad(spline) {
     console.debug("Spline scene loaded");
@@ -31,9 +36,13 @@ function App() {
 
     const splineComputer = spline.findObjectByName("Computer");
     splineComputerRef.current = splineComputer;
+
+    splineArtBoardRef.current = spline.findObjectByName("artboard-2");
   }
 
   function onMouseDown(e) {
+    console.debug("Event on mouse down=", e.target.name);
+
     if (e.target.name === "Computer") {
       console.debug("Computer Pressed");
       console.debug("OnMouseDown isShowProjects=", isShowProjects);
@@ -44,9 +53,25 @@ function App() {
       }
       setTimeout(() => {
         // Display project modal after Camera animation ends
-        document.getElementById("my_modal_3").showModal();
+        document.getElementById("project_modal").showModal();
         isShowProjects.current = true;
         console.debug("Showing modal isShowProjects=", isShowProjects);
+      }, 1000);
+    }
+
+    if (e.target.name === "artboard-2") {
+      console.debug("artboard Pressed");
+      console.debug("OnMouseDown isShowingResume=", isShowingResume);
+      if (isShowingResume.current === true) {
+        isShowingResume.current = false;
+        console.debug("set isShowingResume back false and exit");
+        return;
+      }
+      setTimeout(() => {
+        // Display project modal after Camera animation ends
+        document.getElementById("resume_modal").showModal();
+        isShowingResume.current = true;
+        console.debug("Showing modal isShowingResume=", isShowingResume);
       }, 1000);
     }
   }
@@ -54,6 +79,10 @@ function App() {
   function onModalClose() {
     console.debug("MouseDown Reverse");
     splineComputerRef.current.emitEventReverse("mouseDown");
+  }
+
+  function onResumeModalClose() {
+    splineArtBoardRef.current.emitEventReverse("mouseDown");
   }
 
   function renderLoading() {
@@ -71,15 +100,18 @@ function App() {
 
   function renderResumePDF() {
     return (
-      <div>
+      <div className="w-full">
         <Document
-          file={resumePDF}
-          onLoadSuccess={() => {
-            console.log("PDF loaded");
-          }}
+          file={resumeURL}
+          onLoadSuccess={() => {}}
           options={pdfOptions}
+          className={"w-full"}
         >
-          <Page pageNumber={1} />
+          <Page
+            pageNumber={1}
+            renderTextLayer={false}
+            renderAnnotationLayer={false}
+          />
         </Document>
       </div>
     );
@@ -94,8 +126,29 @@ function App() {
         onMouseDown={onMouseDown}
         className={isSplineLoaded ? "block" : "hidden"}
       />
-      <dialog id="my_modal_3" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl md:w-4/4">
+
+      <dialog id="resume_modal" className="modal">
+        <div className="modal-box sm:w-11/12 max-w-[644px] px-2 ">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              onClick={onResumeModalClose}
+            >
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">
+            <a className="link link-primary" href={resumeURL}>
+              Download Resume
+            </a>
+          </h3>
+          {renderResumePDF()}
+        </div>
+      </dialog>
+      {/* Projects modal */}
+      <dialog id="project_modal" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl md:w-4/4 md:h-5/6 lg:h-5/6">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
