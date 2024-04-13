@@ -148,7 +148,7 @@ function App() {
       </dialog>
       {/* Projects modal */}
       <dialog id="project_modal" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl md:w-4/4 md:h-5/6 lg:h-5/6">
+        <div className="modal-box w-11/12 max-w-5xl h-2/4 md:w-4/4 md:h-5/6 lg:h-5/6">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
@@ -160,7 +160,8 @@ function App() {
           </form>
           <h3 className="font-bold text-lg mb-2">My Projects</h3>
 
-          <div className="carousel space-x-4 w-full sm:h-96 lg:h-[35rem]">
+          {/* sm:h-96 lg:h-[30rem] */}
+          <div className="carousel space-x-4 w-full h-5/6">
             <div
               id="slide1"
               className="carousel-item relative w-full flex-col gap-2"
