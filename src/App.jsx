@@ -1,5 +1,5 @@
 import Spline from "@splinetool/react-spline";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pdfjs, Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import youtubeNoteTakingAppThumbnail from "./assets/img/youtube-note-taking.png";
@@ -27,6 +27,27 @@ function App() {
 
   const splineComputerRef = useRef();
   const splineArtBoardRef = useRef();
+
+  // Skills
+  const [skills, setSkills] = useState();
+  // Function to fetch data
+  const fetchSkills = async () => {
+    try {
+      const response = await fetch(
+        "https://portfolio-express-server-pi.vercel.app/api/skills"
+      ); // Replace with your API URL
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      setSkills(result);
+    } catch (error) {
+      console.debug(error);
+    }
+  };
+  useEffect(() => {
+    fetchSkills();
+  }, []);
 
   function onSplineLoad(spline) {
     console.debug("Spline scene loaded");
@@ -117,6 +138,32 @@ function App() {
     );
   }
 
+  function renderSkillsSection() {
+    if (skills == null) {
+      return null;
+    }
+    return (
+      <div className="container mx-auto py-4 skills">
+        <h2 className="text-2xl font-bold mb-4">Skills</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {skills.map((skill) => (
+            <div
+              key={skill._id.$oid}
+              className="card bg-base-100 shadow-md p-4 flex flex-col items-center"
+            >
+              {/* Render icon using dangerouslySetInnerHTML */}
+              <div
+                className="w-12 h-12 mb-2"
+                dangerouslySetInnerHTML={{ __html: skill.iconPath }}
+              />
+              <p className="font-semibold">{skill.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {renderLoading()}
@@ -144,6 +191,7 @@ function App() {
             </a>
           </h3>
           {renderResumePDF()}
+          {renderSkillsSection()}
         </div>
       </dialog>
       {/* Projects modal */}

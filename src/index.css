@@ -80,3 +80,7 @@ body {
   aspect-ratio: 594/841 !important;
   height: auto !important;
 }
+
+.skills i {
+  font-size: 40px;
+}
