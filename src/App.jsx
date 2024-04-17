@@ -42,6 +42,7 @@ function App() {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
+
       setSkills(result);
     } catch (error) {
       console.debug(error);
@@ -168,7 +169,7 @@ function App() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {skills.map((skill) => (
             <div
-              key={skill._id.$oid}
+              key={skill._id}
               className="card bg-base-100 shadow-md p-4 flex flex-col items-center"
             >
               {/* Render icon using dangerouslySetInnerHTML */}
