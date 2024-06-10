@@ -208,18 +208,18 @@ function App() {
               ))}
             </div>
 
-            <div className="mockup-window border bg-blue-900 w-full">
-              <div className="flex justify-center bg-base-200 h-full">
+            <div className="rounded-box w-full h-4/6">
+              <div className="flex justify-center h-full">
                 <img
                   src={project.imageUrl}
-                  className="w-full h-full object-contain"
+                  className=" h-full object-contain rounded-box"
                   alt={`${project.name} Thumbnail`}
                 />
               </div>
             </div>
             <div className="flex justify-center items-center">
               <a
-                className="btn btn-outline btn-primary w-2/5"
+                className="btn btn-primary btn-primary w-2/5"
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -231,13 +231,13 @@ function App() {
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a
                 href={`#slide${index === 0 ? projects.length : index}`}
-                className="btn btn-circle"
+                className="btn btn-circle btn-primary"
               >
                 ❮
               </a>
               <a
                 href={`#slide${index === projects.length - 1 ? 1 : index + 2}`}
-                className="btn btn-circle"
+                className="btn btn-circle btn-primary"
               >
                 ❯
               </a>
@@ -280,7 +280,7 @@ function App() {
       </dialog>
       {/* Projects modal */}
       <dialog id="project_modal" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl h-2/4 md:w-4/4 md:h-5/6 lg:h-5/6">
+        <div className="modal-box w-11/12 max-w-5xl h-5/6 md:w-4/4 md:h-5/6 lg:h-5/6">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
